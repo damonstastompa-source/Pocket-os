@@ -1,0 +1,19 @@
+{
+  "name": "Pocket OS",
+  "short_name": "Pocket OS",
+  "description": "A personal web desktop for phone and computer.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0d111b",
+  "theme_color": "#10151f",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
