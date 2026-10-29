@@ -21,19 +21,34 @@ h1,h2,h3,p{margin-top:0}h2{font-size:21px;margin-bottom:7px}h3{font-size:15px;ma
 #mobileMenu{display:none}
 @media(max-width:650px){#topbar{height:40px;padding:0 10px}.topright .date{display:none}#icons{top:54px;left:8px;grid-template-columns:repeat(2,76px);gap:3px}.desktop-icon{width:72px;min-height:70px;font-size:11px}.window{left:6px!important;top:46px!important;width:calc(100vw - 12px)!important;height:calc(100% - 92px)!important;min-width:0;border-radius:13px}.window.maximized{left:4px!important;top:44px!important;width:calc(100% - 8px)!important;height:calc(100% - 86px)!important}.titlebar{height:42px}.window-body{padding:12px}.file-layout{grid-template-columns:1fr}.sidebar{display:flex;gap:5px;overflow:auto;border-right:0;border-bottom:1px solid var(--line);padding:7px}.sideitem{white-space:nowrap;width:auto;flex:0 0 auto;padding:8px}.filemain{padding:10px}.filegrid{grid-template-columns:repeat(auto-fill,minmax(82px,1fr));gap:4px}.fileitem{min-height:86px;font-size:11px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}#dock{bottom:7px;gap:4px;padding:6px;border-radius:15px}.dockbtn{width:43px;height:43px;font-size:21px}.window-footer{padding:7px 10px}.browserbar button{padding:8px}.row.mobile-stack{align-items:stretch;flex-direction:column}}
 .godapp{max-width:820px;margin:0 auto}.godapp .tile{box-shadow:0 8px 30px #0002}.godapp .field{line-height:1.5}
+
+/* v0.1.3 desktop app icons */
+#icons{grid-template-columns:repeat(2,96px);gap:14px 10px;top:58px;left:12px}
+.desktop-icon{width:94px;min-height:104px;gap:8px;padding:8px 4px;border-radius:12px;color:#f4f7ff;font-weight:600;text-shadow:0 1px 4px #0008}
+.desktop-icon:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.app-icon{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;font-size:27px;box-shadow:0 7px 18px #0006,inset 0 1px 0 #ffffff45;border:1px solid #ffffff2a}
+.godbox-icon{font-size:35px;color:#ffe4a0;background:radial-gradient(circle at 50% 28%,#77542b,#352417 70%,#1d1713);border-color:#d6b66e80}
+.recovery-icon{color:#d8fff0;background:linear-gradient(145deg,#247d68,#153e39 70%,#122a2a);border-color:#73d7b680}
+.files-icon{background:linear-gradient(145deg,#568bd8,#294c87)}
+.browser-icon{background:linear-gradient(145deg,#4c9fe8,#244c8b)}
+.notes-icon{background:linear-gradient(145deg,#9a82d9,#554187)}
+.backup-icon{background:linear-gradient(145deg,#42a99b,#21665f)}
+.settings-icon{background:linear-gradient(145deg,#718096,#374151)}
+@media(max-width:520px){#icons{grid-template-columns:repeat(2,88px);left:7px;gap:8px 4px}.desktop-icon{width:86px;min-height:96px}.app-icon{width:50px;height:50px;border-radius:14px}}
+
 </style>
 </head>
 <body>
 <div id="desktop">
   <header id="topbar"><div class="brand"><span class="logo">P</span><span>Pocket OS</span></div><div class="topright"><span id="status">Local workspace</span><span class="date" id="clock"></span><button class="ghost" style="padding:4px 8px" onclick="openApp('settings')">⚙</button></div></header>
   <div id="icons">
-    <button class="desktop-icon" onclick="openApp('files')"><span class="emoji">📁</span><span>Files</span></button>
-    <button class="desktop-icon" onclick="openApp('browser')"><span class="emoji">🌐</span><span>Browser</span></button>
-    <button class="desktop-icon" onclick="openApp('godbox')"><span class="emoji">🕯️</span><span>My God Box</span></button>
-    <button class="desktop-icon" onclick="openApp('recovery')"><span class="emoji">🌿</span><span>Recovery Journal</span></button>
-    <button class="desktop-icon" onclick="openApp('notes')"><span class="emoji">📝</span><span>Notes</span></button>
-    <button class="desktop-icon" onclick="openApp('backup')"><span class="emoji">💾</span><span>Backup</span></button>
-    <button class="desktop-icon" onclick="openApp('settings')"><span class="emoji">⚙️</span><span>Settings</span></button>
+    <button class="desktop-icon" aria-label="Open File Manager" onclick="openApp('files')"><span class="app-icon files-icon">📁</span><span>Files</span></button>
+    <button class="desktop-icon" aria-label="Open Web Browser" onclick="openApp('browser')"><span class="app-icon browser-icon">🌐</span><span>Browser</span></button>
+    <button class="desktop-icon app-godbox" aria-label="Open My God Box" onclick="openApp('godbox')"><span class="app-icon godbox-icon">✧</span><span>My God Box</span></button>
+    <button class="desktop-icon app-recovery" aria-label="Open Recovery Journal" onclick="openApp('recovery')"><span class="app-icon recovery-icon">✚</span><span>Recovery Journal</span></button>
+    <button class="desktop-icon" aria-label="Open Notes" onclick="openApp('notes')"><span class="app-icon notes-icon">📝</span><span>Notes</span></button>
+    <button class="desktop-icon" aria-label="Open Backup and Restore" onclick="openApp('backup')"><span class="app-icon backup-icon">💾</span><span>Backup</span></button>
+    <button class="desktop-icon" aria-label="Open Settings" onclick="openApp('settings')"><span class="app-icon settings-icon">⚙️</span><span>Settings</span></button>
   </div>
   <main id="windows"></main>
   <nav id="dock" aria-label="App dock">
@@ -51,7 +66,7 @@ h1,h2,h3,p{margin-top:0}h2{font-size:21px;margin-bottom:7px}h3{font-size:15px;ma
 <input id="uploadInput" type="file" multiple class="hidden">
 <input id="restoreInput" type="file" accept=".json,application/json" class="hidden">
 <script>
-const APP_VERSION='0.1.2';
+const APP_VERSION='0.1.3';
 const KEY='pocket-os-data-v1', SETTINGS='pocket-os-settings-v1';
 const defaultData={version:1,files:[{id:'root-doc',name:'Welcome.txt',type:'text/plain',parent:'root',content:'Welcome to Pocket OS!\\n\\nThis is your personal browser-based desktop. Create folders, upload files, write notes, and export a backup regularly.\\n\\nYour data is stored locally in this browser on this device.'}],notes:'',createdAt:new Date().toISOString()};
 let data=loadData(), settings=JSON.parse(localStorage.getItem(SETTINGS)||'{}'), z=10, activeFolder='root', selectedFiles=new Set(), currentBrowserUrl='', lastWindow=0;
@@ -72,7 +87,7 @@ if(app==='godbox')return godBoxContent();
 if(app==='recovery')return recoveryContent();
 if(app==='notes')return `<h2>Notes</h2><p class="subhead">Autosaves on this device as you type.</p><textarea id="notesText" class="field" style="height:calc(100% - 88px);min-height:220px;resize:vertical" placeholder="Capture an idea…"></textarea><div class="between" style="margin-top:9px"><span class="small" id="notesStatus">Autosave enabled</span><button id="clearNotes">Clear notes</button></div>`;
 if(app==='backup')return `<h2>Backup & Restore</h2><p class="subhead">Make a portable copy of your Pocket OS files and notes, or restore a previous backup.</p><div class="grid"><div class="tile"><div class="big">💾</div><strong>Export full backup</strong><p class="small">Download a JSON backup containing your virtual files, folders, notes, and settings.</p><button class="primary" id="exportBtn">Export backup</button></div><div class="tile"><div class="big">♻️</div><strong>Restore backup</strong><p class="small">Import a Pocket OS JSON backup. This replaces the current workspace.</p><button id="restoreBtn">Choose backup</button></div><div class="tile"><div class="big">📦</div><strong>Download all files</strong><p class="small">Download each stored file individually. Useful for moving documents elsewhere.</p><button id="downloadAllBtn">Download files</button></div><div class="tile"><div class="big">🛡️</div><strong>Storage status</strong><p class="small" id="storageInfo">Calculating…</p><button id="refreshStorage">Refresh status</button></div></div><div class="webnote" style="margin-top:16px"><strong>Important</strong><p class="small" style="margin:7px 0 0">This is local browser storage, not cloud sync. Backups are not encrypted. Keep backup files somewhere private, and export them before clearing browser data or switching devices.</p></div>`;
-if(app==='settings')return `<h2>Settings</h2><p class="subhead">Tune your Pocket OS workspace.</p><div class="settings-row"><div><strong>Confirm before deleting</strong><div class="small">Ask before deleting files or folders.</div></div><input type="checkbox" class="switch" id="confirmDelete" ${settings.confirmDelete!==false?'checked':''}></div><div class="settings-row"><div><strong>Desktop icon labels</strong><div class="small">Show app names on the desktop.</div></div><input type="checkbox" class="switch" id="showLabels" ${settings.showLabels!==false?'checked':''}></div><div class="settings-row"><div><strong>Workspace storage</strong><div class="small">Files and notes are stored in this browser profile.</div></div><span class="small">Local only</span></div><div class="webnote" style="margin-top:18px"><h3>About Pocket OS</h3><p class="small">A lightweight, installable web desktop designed for phone and computer screens. Includes a desktop, app windows, file manager, web launcher, notes, and backup/restore.</p><p class="small">Version 0.1.2 · GitHub Pages compatible · No account required.</p></div><div class="row" style="margin-top:16px"><button id="exportFromSettings">Export backup</button><button id="resetWorkspace">Reset workspace</button></div>`;
+if(app==='settings')return `<h2>Settings</h2><p class="subhead">Tune your Pocket OS workspace.</p><div class="settings-row"><div><strong>Confirm before deleting</strong><div class="small">Ask before deleting files or folders.</div></div><input type="checkbox" class="switch" id="confirmDelete" ${settings.confirmDelete!==false?'checked':''}></div><div class="settings-row"><div><strong>Desktop icon labels</strong><div class="small">Show app names on the desktop.</div></div><input type="checkbox" class="switch" id="showLabels" ${settings.showLabels!==false?'checked':''}></div><div class="settings-row"><div><strong>Workspace storage</strong><div class="small">Files and notes are stored in this browser profile.</div></div><span class="small">Local only</span></div><div class="webnote" style="margin-top:18px"><h3>About Pocket OS</h3><p class="small">A lightweight, installable web desktop designed for phone and computer screens. Includes a desktop, app windows, file manager, web launcher, notes, and backup/restore.</p><p class="small">Version 0.1.3 · GitHub Pages compatible · No account required.</p></div><div class="row" style="margin-top:16px"><button id="exportFromSettings">Export backup</button><button id="resetWorkspace">Reset workspace</button></div>`;
 return `<h2>Home</h2>${homeContent()}`}
 
 const GOD_KEY='pocket-os-godbox-v1', REC_KEY='pocket-os-recovery-v1';

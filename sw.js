@@ -1,4 +1,4 @@
-const CACHE='pocket-os-v0.1.2';
+const CACHE='pocket-os-v0.1.3';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./icon.svg'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)));
@@ -23,8 +23,6 @@ self.addEventListener('fetch', event => {
         caches.open(CACHE).then(cache => cache.put(event.request, copy));
       }
       return response;
-    } catch (error) {
-      return caches.match('./index.html');
-    }
+    } catch (error) { return caches.match('./index.html'); }
   })());
 });
