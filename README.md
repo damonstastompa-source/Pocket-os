@@ -1,15 +1,15 @@
-# Pocket OS v0.1.1
+# Pocket OS v0.1.2
 
 A lightweight, mobile-friendly web desktop designed for GitHub Pages.
 
-**Current version:** 0.1.1
+**Current version:** 0.1.2
 
 ## Included
 - Desktop with app shortcuts and a bottom dock
 - App windows (draggable on larger screens, maximize/minimize/close)
 - File manager with folders, text files, uploads, selection, downloads, and deletion
 - Web launcher/search window (opens sites in a new tab because most websites block iframe embedding)
-- Notes with autosave
+- Integrated My God Box prototype with entries, reflections, and quiet space\n- Integrated Recovery Journal prototype with daily affirmations, gratitude, journaling, history, and export\n- Notes with autosave
 - Full workspace JSON backup and restore
 - Installable PWA and basic offline shell caching
 - Local browser storage; no account or server required
