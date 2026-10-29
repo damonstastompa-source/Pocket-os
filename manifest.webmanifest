@@ -1,7 +1,7 @@
 {
   "name": "Pocket OS",
   "short_name": "Pocket OS",
-  "description": "A personal web desktop for phone and computer.",
+  "description": "Pocket OS 0.1.1 \u2014 a personal web desktop for phone and computer.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

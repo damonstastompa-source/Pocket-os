@@ -1,6 +1,8 @@
-# Pocket OS
+# Pocket OS v0.1.1
 
 A lightweight, mobile-friendly web desktop designed for GitHub Pages.
+
+**Current version:** 0.1.1
 
 ## Included
 - Desktop with app shortcuts and a bottom dock
